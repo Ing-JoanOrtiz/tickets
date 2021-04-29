@@ -20,5 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('ticket', 'HomeController@new')->name('ticket-new');
+Route::post('ticket', 'HomeController@create')->name('ticket-create');
+Route::get('/ticket/new', 'HomeController@new')->name('new-ticket');
+Route::get('/ticket/index', 'HomeController@list')->name('index-ticket');
+Route::get('/ticket/show/{ticket}', 'HomeController@show')->name('show-ticket');
 Route::delete('/ticket/{ticket}', 'HomeController@delet')->name('ticket-delet');

@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\ticket;
+
+use App\Status;
+use App\Ticket;
+use App\Priority;
+use App\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,23 +27,59 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $tickets = ticket::all();
-      return view('home', compact('tickets'));
+      return view('home');
     }
 
-    public function new(Request $request)
+    public function list()
+    {
+
+      if (request()->status) {
+          $statuses = Status::all();
+          $tickets = Ticket::where('status_id', request()->status)->get();
+      } else {
+          $statuses = Status::all();
+          $tickets = Ticket::where('status_id', '1')->get();
+      }
+
+      return view('tickets.index', compact('tickets', 'statuses'));
+
+    }
+
+    public function show($id)
+    {
+
+      $ticket = Ticket::where('id', $id)->firstOrFail();
+
+      return view('tickets.ticket')->with([
+      'ticket' => $ticket,
+      ]);
+
+    }
+
+    public function new()
+    {
+      $priority = Priority::all();
+      $category= Category::all();
+      return view('tickets.new', compact('priority','category'));
+    }
+
+    public function create(Request $request)
     {
 
       $this->validate($request, [
-          'name' => 'required',
+          'titulo' => 'required',
           'category' => 'required',
-          'desc' => 'required',
+          'priority' => 'required',
+          'description' => 'required',
       ]);
 
-      $ticket = new ticket;
-      $ticket->name = $request->get('name');
-      $ticket->category = $request->get('category');
-      $ticket->desc = $request->get('desc');
+      $ticket = new Ticket;
+      $ticket->titulo = $request->get('titulo');
+      $ticket->user_id = auth()->id();
+      $ticket->status_id = "1";
+      $ticket->priority_id = $request->get('priority');
+      $ticket->category_id = $request->get('category');
+      $ticket->description = $request->get('description');
       $ticket->save();
 
       return redirect()->route('home')->withFlash('Tu ticket ha sido enviado');

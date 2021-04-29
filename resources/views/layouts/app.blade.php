@@ -33,7 +33,43 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                      @if(auth()->user())
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                              Tickets
+                            </a>
 
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" type="button" href="{{route('new-ticket')}}">
+                                <i class=" fa fa-plus">
+                                  Nuevo ticket
+                                </i>
+                              </a>
+                                <a class="dropdown-item" href="{{route('index-ticket')}}">
+                                    Seguimientos
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    Solicitados
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                              Usuarios
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" type="button" data-toggle="modal" data-target="#sampleModal">
+                                <i class=" fa fa-plus">
+                                  Nuevo usuario
+                                </i>
+                              </a>
+                                <a class="dropdown-item" href="">
+                                    Roles y permisos
+                                </a>
+                            </div>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
