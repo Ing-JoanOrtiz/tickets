@@ -2,6 +2,10 @@
 
 @section('content')
 
+@if(session()->has('flash'))
+<div class="alert alert-success">{{session('flash')}}</div>
+@endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -36,9 +40,11 @@
                           <a href="{{route('show-ticket', $ticket)}}" class="btn btn-xs btn-info">
                             <img src="/icons/v.png" width="10" height="10"> Ver
                           </a>
-                          <a href="" class="btn btn-xs btn-primary">
+                          @if( $ticket->status_id < 3)
+                          <a href="{{route('take-ticket', $ticket)}}" class="btn btn-xs btn-primary">
                             <img src="/icons/t.png" width="10" height="10"> Tomar
                           </a>
+                          @endif
                           <form method="POST" action="{{route('ticket-delet', $ticket)}}" style="display: inline">
                             {{csrf_field()}} {{method_field('DELETE')}}
                             <button class="btn btn-xs btn-danger" onclick="return confirm('¿Está seguro de querer eliminar?')">

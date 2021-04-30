@@ -6,6 +6,7 @@ use App\Status;
 use App\Ticket;
 use App\Priority;
 use App\Category;
+use App\User_Ticket;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -50,9 +51,37 @@ class HomeController extends Controller
 
       $ticket = Ticket::where('id', $id)->firstOrFail();
 
+      $user_tickets = User_Ticket::where('ticket_id', $id)->get();
+
       return view('tickets.ticket')->with([
       'ticket' => $ticket,
+      'user_tickets' => $user_tickets,
       ]);
+
+    }
+
+    public function take(Ticket $ticket)
+    {
+      if($ticket->status_id = '1')
+      {
+        $ticket->status_id = "2";
+        $ticket->save();
+      }
+
+      $user__ticket = User_Ticket::where('user_id', '=', auth()->id())->where('ticket_id', '=', $ticket->id)->first();
+
+      if($user__ticket == null)
+      {
+        $user_ticket = new User_Ticket;
+        $user_ticket->user_id = auth()->id();
+        $user_ticket->ticket_id = $ticket->id;
+        $user_ticket->save();
+
+        return redirect()->route('index-ticket')->withFlash('Ticket tomado...');
+      } else
+      {
+        return redirect()->route('index-ticket')->withFlash('Ya has tomado este ticket...');
+      }
 
     }
 

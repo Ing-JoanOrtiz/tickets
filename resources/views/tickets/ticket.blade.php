@@ -30,6 +30,19 @@
       </li>
     </ul>
     <p>
+    @if( $ticket->status_id > 1)
+    <h5>Atendido por:</h5>
+    <ul class="list-group">
+      <li class="list-group-item">
+        @foreach ($user_tickets as $user_ticket)
+
+          {{$user_ticket->user->name}}; <p>
+
+        @endforeach
+      </li>
+    </ul>
+    <p>
+    @endif
     <h5>Estatus</h5>
     <ul class="list-group">
       <li class="list-group-item">

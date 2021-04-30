@@ -24,4 +24,5 @@ Route::post('ticket', 'HomeController@create')->name('ticket-create');
 Route::get('/ticket/new', 'HomeController@new')->name('new-ticket');
 Route::get('/ticket/index', 'HomeController@list')->name('index-ticket');
 Route::get('/ticket/show/{ticket}', 'HomeController@show')->name('show-ticket');
+Route::get('/ticket/take/{ticket}', 'HomeController@take')->name('take-ticket');
 Route::delete('/ticket/{ticket}', 'HomeController@delet')->name('ticket-delet');
