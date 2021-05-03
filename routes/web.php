@@ -26,3 +26,8 @@ Route::get('/ticket/index', 'HomeController@list')->name('index-ticket');
 Route::get('/ticket/show/{ticket}', 'HomeController@show')->name('show-ticket');
 Route::get('/ticket/take/{ticket}', 'HomeController@take')->name('take-ticket');
 Route::delete('/ticket/{ticket}', 'HomeController@delet')->name('ticket-delet');
+Route::get('/ticket/solicitados', 'HomeController@my_list')->name('my-tickets');
+
+Route::get('/user/new', 'UserController@new')->name('new-user');
+Route::get('/users/index', 'UserController@index')->name('index-user');
+Route::get('/users/user/{user}', 'UserController@show')->name('see-user');

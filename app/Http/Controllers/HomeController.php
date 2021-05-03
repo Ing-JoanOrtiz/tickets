@@ -46,6 +46,15 @@ class HomeController extends Controller
 
     }
 
+    public function my_list()
+    {
+
+      $tickets = Ticket::where('user_id', auth()->id())->get();
+      return view('tickets.solicitados', compact('tickets'));
+
+    }
+
+
     public function show($id)
     {
 

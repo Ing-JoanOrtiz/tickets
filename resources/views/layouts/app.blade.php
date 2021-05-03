@@ -40,7 +40,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" type="button" href="{{route('new-ticket')}}">
+                              <a class="dropdown-item" type="button" href="{{route('new-ticket')}}">
                                 <i class=" fa fa-plus">
                                   Nuevo ticket
                                 </i>
@@ -48,7 +48,7 @@
                                 <a class="dropdown-item" href="{{route('index-ticket')}}">
                                     Seguimientos
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{route('my-tickets')}}">
                                     Solicitados
                                 </a>
                             </div>
@@ -59,14 +59,14 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" type="button" data-toggle="modal" data-target="#sampleModal">
+                              <a class="dropdown-item" type="button" href="{{route('new-user')}}">
                                 <i class=" fa fa-plus">
-                                  Nuevo usuario
+                                  Nuevo Usuario
                                 </i>
                               </a>
-                                <a class="dropdown-item" href="">
-                                    Roles y permisos
-                                </a>
+                              <a class="dropdown-item" href="{{route('index-user')}}">
+                                  Lista
+                              </a>
                             </div>
                         </li>
                         @endif

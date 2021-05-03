@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
 
       $ticket =new Ticket;
       $ticket->titulo = 'Falla';
-      $ticket->user_id = '3';
+      $ticket->user_id = '1';
       $ticket->status_id = '3';
       $ticket->priority_id = '3';
       $ticket->category_id = '3';
