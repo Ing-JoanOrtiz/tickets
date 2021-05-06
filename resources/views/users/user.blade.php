@@ -29,6 +29,13 @@
         {{$user->email}}
       </li>
     </ul>
+    <p>
+    <h5>Rol</h5>
+    <ul class="list-group">
+      <li class="list-group-item">
+        {{$user->role->name}}
+      </li>
+    </ul>
 </div>
 
 </div>

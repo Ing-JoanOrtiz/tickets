@@ -20,6 +20,7 @@
                       <tr>
                         <th>Id</th>
                         <th>Nombre</th>
+                        <th>Rol</th>
                         <th>E-mail</th>
                         <th>Acciones</th>
                       </tr>
@@ -29,6 +30,7 @@
                       <tr>
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
+                        <td>{{$user->role->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>
                           <a href="{{route('see-user', $user)}}" class="btn btn-xs btn-primary">

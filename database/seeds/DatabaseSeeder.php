@@ -1,4 +1,5 @@
 <?php
+use Spatie\Permission\Models\Role;
 use App\User;
 use App\Status;
 use App\Ticket;
@@ -15,18 +16,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
+      $role = Role::create(['name' => 'Admin']);
+      $role = Role::create(['name' => 'Soporte']);
+      $role = Role::create(['name' => 'Cliente']);
+
       User::truncate();
 
       $user =new User;
       $user->name = 'John';
       $user->email = '1@1';
       $user->password = bcrypt('1');
+      $user->role_id = '1';
       $user->email_verified_at = Now();
       $user->save();
 
       $user =new User;
       $user->name = 'Alice';
       $user->email = '2@2';
+      $user->role_id = '2';
       $user->password = bcrypt('2');
       $user->email_verified_at = Now();
       $user->save();
@@ -34,6 +43,7 @@ class DatabaseSeeder extends Seeder
       $user =new User;
       $user->name = 'Jose';
       $user->email = '3@3';
+      $user->role_id = '3';
       $user->password = bcrypt('3');
       $user->email_verified_at = Now();
       $user->save();
@@ -41,6 +51,7 @@ class DatabaseSeeder extends Seeder
       $user =new User;
       $user->name = 'Maria';
       $user->email = '4@4';
+      $user->role_id = '3';
       $user->password = bcrypt('4');
       $user->email_verified_at = Now();
       $user->save();

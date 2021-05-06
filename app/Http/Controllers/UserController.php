@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
 
   public function new()
   {
-    return view('users.new');
+    $roles = Role::all();
+    return view('users.new', compact('roles'));
   }
 
     /**
@@ -29,9 +35,24 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+      $this->validate($request, [
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+          'role' => ['required'],
+          'password' => ['required', 'string', 'min:8', 'confirmed'],
+      ]);
+
+      $user = new User;
+      $user->name = $request->get('name');
+      $user->email = $request->get('email');
+      $user->role_id = $request->get('role');
+      $user->password = $request->get('password');
+      $user->save();
+
+      return redirect()->route('home')->withFlash('Usuario creado');
+
     }
 
     /**

@@ -2,6 +2,8 @@
 
 return [
 
+  Spatie\Permission\PermissionServiceProvider::class,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
